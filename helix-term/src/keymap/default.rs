@@ -365,9 +365,9 @@ pub fn default() -> HashMap<Mode, KeyTrie> {
 
         "home" => extend_to_line_start,
         "end" => extend_to_line_end,
-        "esc" => exit_select_mode,
+        "esc" => vim_exit_select_mode,
 
-        "v" => normal_mode,
+        "v" => vim_normal_mode,
         "g" => { "Goto"
             "g" => extend_to_file_start,
             "|" => extend_to_column,

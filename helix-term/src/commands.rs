@@ -302,6 +302,8 @@ impl MappableCommand {
     #[rustfmt::skip]
     static_commands!(
         vim_visual_lines, "visual lines (vim)",
+        vim_normal_mode, "visual lines (vim)",
+        vim_exit_select_mode, "visual lines (vim)",
         vim_move_next_word_start, "damn",
         vim_move_next_long_word_start, "damn",
         vim_extend_next_word_start, "vim",
@@ -2954,7 +2956,8 @@ fn delete_by_selection_insert_mode(
 }
 
 fn delete_selection(cx: &mut Context) {
-    delete_selection_impl(cx, Operation::Delete, YankAction::Yank);
+    EvilOps::operator_impl(cx, EvilOperator::Delete, cx.register);
+    //delete_selection_impl(cx, Operation::Delete, YankAction::Yank);
 }
 
 fn delete_selection_noyank(cx: &mut Context) {
