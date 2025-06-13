@@ -26,15 +26,16 @@ pub fn default() -> HashMap<Mode, KeyTrie> {
         "home" => goto_line_start,
         "end" => goto_line_end,
 
-        "w" => move_next_word_start,
+        "w" => vim_move_next_word_start,
         "b" => move_prev_word_start,
         "e" => move_next_word_end,
 
-        "W" => move_next_long_word_start,
+        "W" => vim_move_next_long_word_start,
         "B" => move_prev_long_word_start,
         "E" => move_next_long_word_end,
 
         "v" => select_mode,
+        "V" => vim_visual_lines,
         "G" => goto_line,
         "g" => { "Goto"
             "g" => goto_file_start,
@@ -340,14 +341,14 @@ pub fn default() -> HashMap<Mode, KeyTrie> {
     let mut select = normal.clone();
     select.merge_nodes(keymap!({ "Select mode"
         "h" | "left" => extend_char_left,
-        "j" | "down" => extend_visual_line_down,
-        "k" | "up" => extend_visual_line_up,
+        "j" | "down" => vim_extend_visual_line_down,
+        "k" | "up" => vim_extend_visual_line_up,
         "l" | "right" => extend_char_right,
 
-        "w" => extend_next_word_start,
+        "w" => vim_extend_next_word_start,
         "b" => extend_prev_word_start,
         "e" => extend_next_word_end,
-        "W" => extend_next_long_word_start,
+        "W" => vim_extend_next_long_word_start,
         "B" => extend_prev_long_word_start,
         "E" => extend_next_long_word_end,
 

@@ -1,6 +1,7 @@
 pub(crate) mod dap;
 pub(crate) mod lsp;
 pub(crate) mod typed;
+pub(crate) mod vim_patch;
 
 pub use dap::*;
 use futures_util::FutureExt;
@@ -16,6 +17,7 @@ use tui::{
     widgets::Cell,
 };
 pub use typed::*;
+pub use vim_patch::*;
 
 use helix_core::{
     char_idx_at_visual_offset,
@@ -278,6 +280,7 @@ impl MappableCommand {
                 }));
             }
         }
+        VimOps::hook_after_each_command(cx);
     }
 
     pub fn name(&self) -> &str {
@@ -298,6 +301,13 @@ impl MappableCommand {
 
     #[rustfmt::skip]
     static_commands!(
+        vim_visual_lines, "visual lines (vim)",
+        vim_move_next_word_start, "damn",
+        vim_move_next_long_word_start, "damn",
+        vim_extend_next_word_start, "vim",
+        vim_extend_next_long_word_start, "vim",
+        vim_extend_visual_line_up, "vim",
+        vim_extend_visual_line_down, "vim",
         no_op, "Do nothing",
         move_char_left, "Move left",
         move_char_right, "Move right",
