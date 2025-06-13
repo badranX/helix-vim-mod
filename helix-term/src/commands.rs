@@ -1,7 +1,7 @@
 pub(crate) mod dap;
 pub(crate) mod lsp;
 pub(crate) mod typed;
-pub(crate) mod vim_patch;
+pub mod vim_patch;
 
 pub use dap::*;
 use futures_util::FutureExt;
@@ -63,6 +63,7 @@ use crate::{
     compositor::{self, Component, Compositor},
     filter_picker_entry,
     job::Callback,
+    static_commands_with_default,
     ui::{self, overlay::overlaid, Picker, PickerColumn, Popup, Prompt, PromptEvent},
 };
 
@@ -300,16 +301,8 @@ impl MappableCommand {
     }
 
     #[rustfmt::skip]
+    static_commands_with_default!(
     static_commands!(
-        vim_visual_lines, "visual lines (vim)",
-        vim_normal_mode, "visual lines (vim)",
-        vim_exit_select_mode, "visual lines (vim)",
-        vim_move_next_word_start, "damn",
-        vim_move_next_long_word_start, "damn",
-        vim_extend_next_word_start, "vim",
-        vim_extend_next_long_word_start, "vim",
-        vim_extend_visual_line_up, "vim",
-        vim_extend_visual_line_down, "vim",
         no_op, "Do nothing",
         move_char_left, "Move left",
         move_char_right, "Move right",
@@ -615,6 +608,7 @@ impl MappableCommand {
         goto_prev_tabstop, "Goto next snippet placeholder",
         rotate_selections_first, "Make the first selection your primary one",
         rotate_selections_last, "Make the last selection your primary one",
+    )
     );
 }
 
